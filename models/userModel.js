@@ -9,7 +9,7 @@ const model = new mongoose.Schema({
   role: { type: String, required: true, enum: ["user", "admin", "dispatch"] },
 });
 
-model.pre("save", function () {
+model.pre("save", function (next) {
   bcrypt
     .hash(this.password, 10)
     .then((result) => {
