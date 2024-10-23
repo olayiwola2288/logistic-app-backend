@@ -9,13 +9,13 @@ const model = new mongoose.Schema({
   role: { type: String, required: true, enum: ["user", "admin", "dispatch"] },
 });
 
-model.pre("save", function (next) {
-  console.log("Saving")
-  console.log(this)
+model.pre("save", function () {
   bcrypt.hash(this.password, 10).then((result) => {
     console.log(result)
     this.password = result;
     next();
+  }).catch((err)=>{
+    console.log(err)
   });
 });
 

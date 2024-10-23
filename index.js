@@ -5,7 +5,7 @@ const orderRouter = require("./router/orderRoutes");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
-
+app.options('*', cors())
 app.use(cors({ origin: "http://localhost:5173/", withCredentials: true }));
 app.use(express.json());
 app.use(function (req, res, next) {
