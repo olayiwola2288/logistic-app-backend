@@ -12,6 +12,8 @@ const model = new mongoose.Schema({
 model.pre("save", function () {
   bcrypt.hash(this.password, 10).then((result) => {
     this.password = result;
+  }).catch((err)=>{
+    console.log(err)
   });
 });
 
