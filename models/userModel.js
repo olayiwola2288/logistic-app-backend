@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const model = new mongoose.Schema({
-  name: { type: String, required: true, minLength: 3 },
+  name: { type: String,  minLength: 3 },
   email: { type: String, required: true, unique: true },
   phone: Number,
   password: { type: String, required: true },
