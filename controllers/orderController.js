@@ -2,7 +2,6 @@ const { response } = require("express");
 const OrderModel = require("../models/orderModel");
 const jwt = require("jsonwebtoken");
 
-
 const getAllOrders = (req, res) => {
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: 'Access denied: Admins only' });

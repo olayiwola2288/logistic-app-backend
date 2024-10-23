@@ -1,19 +1,22 @@
 const User = require("../models/userModel");
 const jwt = require("../node_modules/jsonwebtoken/");
-const bcrypt = require("bcrypt");
+
+const signToken = (payload) => {
+  const token = jwt.sign({ ...payload }, process.env.JWT_SECRET_KEY, {
+    expiresIn: "1d",
+  });
+  return token;
+};
+
 
 const signInUser = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(async (user) => {
-      if (user && (await bcrypt.compare(req.body.password, user.password))) {
-        const token = jwt.sign(
-          { userId: user._id },
-          process.env.JWT_SECRET_KEY,
-          { expiresIn: "1d" }
-        );
-        return res
-          .status(200)
-          .json({ message: "User signed in successfully", token });
+      if (user && (await user.comparePassword(req.body.password))) {
+        return res.status(200).json({
+          message: "User signed in successfully",
+          token: signToken({ userId: user._id }),
+        });
       } else {
         return res.status(404).json({ message: "User not found" });
       }
@@ -25,24 +28,20 @@ const signInUser = (req, res) => {
 };
 
 const signUpUser = (req, res) => {
-  bcrypt.hash(req.body.password, 10).then((result) => {
-    req.body.password = result;
-    req.body.role = "user";
-    User.create(req.body)
-      .then((result) => {
-        console.log(result);
-        res
-          .status(201)
-          .json({ message: "User created successfully", data: result });
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("User not created");
-        res
-          .status(500)
-          .json({ message: "Failed to create user", message: err.message });
-      });
-  });
+  User.create(req.body)
+    .then((result) => {
+      console.log(result);
+      res
+        .status(201)
+        .json({ message: "User created successfully", data: result });
+    })
+    .catch((err) => {
+      console.log(err);
+      console.log("User not created");
+      res
+        .status(500)
+        .json({ message: "Failed to create user", message: err.message });
+    });
 };
 
 const getUsers = (req, res) => {
@@ -99,4 +98,6 @@ const updateUser = (req, res) => {
     });
 };
 
+
+// Get my details
 module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser };

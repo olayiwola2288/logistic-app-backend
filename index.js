@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
 app.use("/users", userRouter);
 app.use("/orders", orderRouter);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log(`Server running on port 5000`);
   mongoose
     .connect(process.env.MONGODB_URI)
@@ -31,3 +31,7 @@ app.listen(process.env.PORT, () => {
 // Get User       GET /users
 // Update User    PATCH /users
 // Get One User   GET /users/{user id}
+
+// TO ADD
+
+// Get my details (route)
