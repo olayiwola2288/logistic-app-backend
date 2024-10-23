@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-app.use(express.json());
 app.use(cors({ origin: "http://localhost:5173/", withCredentials: true }));
+app.use(express.json());
 app.use(function (req, res, next) {
   console.log(`${req.method} request to ${req.url}`);
 
