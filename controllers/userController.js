@@ -13,6 +13,7 @@ const signInUser = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(async (user) => {
       if (user && (await user.comparePassword(req.body.password))) {
+        console.log("Signed In")
         return res.status(200).json({
           message: "User signed in successfully",
           token: signToken({ userId: user._id }),
