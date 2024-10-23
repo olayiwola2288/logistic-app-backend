@@ -28,6 +28,7 @@ const signInUser = (req, res) => {
 };
 
 const signUpUser = (req, res) => {
+  req.body.role = "user";
   User.create(req.body)
     .then((result) => {
       console.log(result);
