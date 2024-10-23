@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const model = new mongoose.Schema({
-  name: { type: String, required: true, minLength: 3 },
+  name: { type: String, minLength: 3 },
   email: { type: String, required: true, unique: true },
   phone: Number,
   password: { type: String, required: true },
@@ -10,13 +10,16 @@ const model = new mongoose.Schema({
 });
 
 model.pre("save", function () {
-  bcrypt.hash(this.password, 10).then((result) => {
-    console.log(result)
-    this.password = result;
-    next();
-  }).catch((err)=>{
-    console.log(err)
-  });
+  bcrypt
+    .hash(this.password, 10)
+    .then((result) => {
+      console.log(result);
+      this.password = result;
+      next();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 model.methods.comparePassword = async function (passwordToConfirm) {
