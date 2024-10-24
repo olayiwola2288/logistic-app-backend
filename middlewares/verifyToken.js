@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
 
   const decodedToken = jwt.verify(
     token,
-    "dhhdjhdwhdwhdjdhccdwbdncdnwmnbqnmenmedmqn"
+    process.env.JWT_SECRET_KEY
   );
   // console.log(decodedToken);
 

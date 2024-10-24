@@ -18,7 +18,7 @@ const signInUser = (req, res) => {
           message: "User signed in successfully",
           token: signToken({ userId: user._id }),
         });
-      } else {
+      } else {  
         return res.status(404).json({ message: "User not found" });
       }
     })
@@ -33,6 +33,7 @@ const signUpUser = (req, res) => {
   User.create(req.body)
     .then((result) => {
       console.log(result);
+      result.password = undefined
       res
         .status(201)
         .json({ message: "User created successfully", data: result });
