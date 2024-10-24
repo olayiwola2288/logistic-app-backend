@@ -110,4 +110,4 @@ const updateUser = (req, res) => {
 
 
 // Get my details
-module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser };
+module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe };
