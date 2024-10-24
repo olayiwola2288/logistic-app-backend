@@ -19,6 +19,9 @@ const verifyToken = (req, res, next) => {
     UserModel.findById(decodedToken.userId)
       .then((result) => {
         console.log("line 21", result);
+        if(!result) {
+          return res.status(404).json({ message: "THe user belonging to this token no longer exist"})
+        } 
         req.user = result;
         next();
       })
