@@ -8,17 +8,17 @@ const signToken = (payload) => {
   return token;
 };
 
-
 const signInUser = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(async (user) => {
       if (user && (await user.comparePassword(req.body.password))) {
-        console.log("Signed In")
+        console.log("Signed In");
         return res.status(200).json({
           message: "User signed in successfully",
           token: signToken({ userId: user._id }),
         });
-      } else {  
+      } else {
+        // res.cookies("token", { httpOnly: false, expiresIn: 5000 });
         return res.status(404).json({ message: "User not found" });
       }
     })
@@ -33,7 +33,7 @@ const signUpUser = (req, res) => {
   User.create(req.body)
     .then((result) => {
       console.log(result);
-      result.password = undefined
+      result.password = undefined;
       res
         .status(201)
         .json({ message: "User created successfully", data: result });
@@ -100,7 +100,6 @@ const updateUser = (req, res) => {
         .json({ message: "Failed to update user", message: err.message });
     });
 };
-
 
 // Get my details
 module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser };
