@@ -8,7 +8,9 @@ require("dotenv").config();
 
 app.use(express.json());
 app.use(
-  cors({ origin: ["https://logistic-azure.vercel.app", "http://localhost:5000"] })
+  cors({
+    origin: ["https://logistic-azure.vercel.app", "http://localhost:5173"],
+  })
 );
 
 app.use(function (req, res, next) {
