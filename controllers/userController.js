@@ -8,6 +8,15 @@ const signToken = (payload) => {
   return token;
 };
 
+const getMe =(req, res)=>{
+  User.findById(req.user._id).then((result)=>{
+    res.status(200).json({data: result})
+  }).catch((err)=>{
+    console.log(err)
+  })
+}
+  
+
 const signInUser = (req, res) => {
   User.findOne({ email: req.body.email })
     .then(async (user) => {
@@ -102,4 +111,4 @@ const updateUser = (req, res) => {
 };
 
 // Get my details
-module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser };
+module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe };
