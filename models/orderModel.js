@@ -14,10 +14,10 @@ const model = new mongoose.Schema({
   receiverName: { type: String, required: true },
   receiverAddress: { type: String, required: true },
   receiverPhone: { type: String, required: true },
-  deliveryType: {
-    type: String,
-    enum: ["SameCity", "interCountry", "interCountry"],
-  },
+  // deliveryType: {
+  //   type: String,
+  //   enum: ["SameCity", "interCountry", "interCountry"],
+  // },
   status: {
     type: String,
     enum: ["pending", "completed"],
