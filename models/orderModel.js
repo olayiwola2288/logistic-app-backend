@@ -1,24 +1,30 @@
 const mongoose = require("mongoose");
 
 const model = new mongoose.Schema({
-  name: { type: String, required: true },
   status: {
     type: String,
     enum: ["pending", "completed"],
     required: true,
     default: "pending",
   },
-  user: { type: String, required: true },
-  confirmedByUser: { type: Boolean, default: false },
-  dispatched: { type: Boolean, default: false },
 
-  // addressOfPersonWeArePickingFrom: {type: "string", required: true},
-  // phoneNumberOfPersonWeArePickingFrom: {type: "number", required:true},
-  // weightOfItem: {type: "number"},
-  // receiverName: {type: "string", required: true},
-  // receiverAddress: {type: "string", required: true},
-  // receiverPhone: {type: "number", required: true},
-  // paymentType: {type: "string", required: true},
+  senderName: { type: String, required: true },
+  senderAddress: { type: String, required: true },
+  senderPhone: { type: String, required: true },
+  pickUpItem: { type: String, required: true },
+  itemWeight: { type: String },
+  deliveryMode: {
+    type: String,
+    enum: ["Bicycle", "Bike", "Car", "Truck"],
+    required: true,
+  },
+  receiverName: { type: String, required: true },
+  receiverAddress: { type: String, required: true },
+  receiverPhone: { type: String, required: true },
+  deliveryType: {
+    type: String,
+    enum: ["SameCity", "interCountry", "interCountry"],
+  },
 });
 
 const OrderModel = mongoose.model("Order", model);
