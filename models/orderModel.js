@@ -24,6 +24,7 @@ const model = new mongoose.Schema({
     required: true,
     default: "pending",
   },
+  user: { type: String},
 });
 
 const OrderModel = mongoose.model("Order", model);
