@@ -18,13 +18,10 @@ const model = new mongoose.Schema({
   //   type: String,
   //   enum: ["SameCity", "interCountry", "interCountry"],
   // },
-  status: {
-    type: String,
-    enum: ["pending", "completed"],
-    required: true,
-    default: "pending",
-  },
   user: { type: String},
+  receiver:{type: boolean, default:false},
+  delivered:{type: boolean, default:false}
+  
 });
 
 const OrderModel = mongoose.model("Order", model);
