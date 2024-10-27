@@ -21,8 +21,8 @@ const updateOrder = async (req, res) => {
   console.log("update order", req.user);
   const detailsToSave = {};
   console.log(req.body.delivered);
-  if (req.body.confirmed && req.user.role === "user") {
-    detailsToSave.confirmed = true;
+  if (req.body.received && req.user.role === "user") {
+    detailsToSave.received = true;
   } else if (req.body.delivered && req.user.role === "dispatch") {
     detailsToSave.delivered = true;
   }
