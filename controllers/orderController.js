@@ -31,7 +31,7 @@ const updateOrder = async (req, res) => {
   console.log(req.params.id);
   // return;
   OrderModel.findOneAndUpdate(
-    { _id: req.params.id, user: req.user._id },
+    { _id: req.params.id},
     detailsToSave,
     {
       new: true,
