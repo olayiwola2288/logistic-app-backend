@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const getAllOrders = (req, res) => {
   console.log(req.user)
-  if (req.user?.role !== 'admin') {
+  if (req.user?.role !== 'admin' || req.user?.role !== "dispatch") {
     return res.status(403).json({ message: 'Access denied: Admins only' });
   }
   OrderModel.find()
