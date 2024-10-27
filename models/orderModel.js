@@ -19,8 +19,8 @@ const model = new mongoose.Schema({
   //   enum: ["SameCity", "interCountry", "interCountry"],
   // },
   user: { type: String},
-  receiver:{type: boolean, default:false},
-  delivered:{type: boolean, default:false}
+  receiver:{type: Boolean, default:false},
+  delivered:{type: Boolean, default:false}
   
 });
 
