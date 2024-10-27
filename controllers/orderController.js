@@ -20,10 +20,10 @@ const getAllOrders = (req, res) => {
 const updateOrder = async (req, res) => {
   console.log("update order", req.user);
   const detailsToSave = {};
-  console.log(req.body.confirmedByUser);
-  if (req.body.confirmedByUser && req.user.role === "user") {
+  console.log(req.body.delivered);
+  if (req.body.confirmed && req.user.role === "user") {
     detailsToSave.confirmed = true;
-  } else if (req.body.dispatched && req.user.role === "dispatch") {
+  } else if (req.body.delivered && req.user.role === "dispatch") {
     detailsToSave.delivered = true;
   }
 
