@@ -122,4 +122,4 @@ const deleteUser = (req, res)=>{
 }
 
 // Get my details
-module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe };
+module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe, deleteUser };
