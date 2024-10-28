@@ -111,5 +111,15 @@ const updateUser = (req, res) => {
     });
 };
 
+const deleteUser = (req, res)=>{
+  
+  User.findByIdAndDelete(req.params.id).then((result)=>{
+    console.log(result)
+    
+  }).catch((err)=>{
+    console.log(err)
+  })
+}
+
 // Get my details
 module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe };
