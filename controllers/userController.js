@@ -113,6 +113,8 @@ const updateUser = (req, res) => {
 
 const deleteUser = (req, res)=>{
   // console.log(rea.params)
+  if(req.user.role !== "admin")return res.status(401).json({message:"only admin is alow to delete uses"});
+  if(req.params.id === req.user._id)return res.status(400).json({message:"You can not delete your self"});
   User.findByIdAndDelete(req.params.id).then((result)=>{
     console.log(result)
     res.status(200).json({message: "User Deleted Successfully"})
