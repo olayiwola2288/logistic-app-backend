@@ -25,6 +25,7 @@ const signInUser = (req, res) => {
         return res.status(200).json({
           message: "User signed in successfully",
           token: signToken({ userId: user._id }),
+          user
         });
       } else {
         // res.cookies("token", { httpOnly: false, expiresIn: 5000 });
