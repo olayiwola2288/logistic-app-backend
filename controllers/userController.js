@@ -119,7 +119,7 @@ const deleteUser = (req, res)=>{
     
   }).catch((err)=>{
     console.log(err)
-    res.status(400).json({"an error occured"})
+    res.status(400).json({maessage: "an error occured"})
   })
 }
 
