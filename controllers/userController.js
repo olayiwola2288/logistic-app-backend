@@ -112,7 +112,7 @@ const updateUser = (req, res) => {
 };
 
 const deleteUser = (req, res)=>{
-  
+  console.log(rea.params)
   User.findByIdAndDelete(req.params.id).then((result)=>{
     console.log(result)
     
