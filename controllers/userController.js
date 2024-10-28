@@ -115,11 +115,11 @@ const deleteUser = (req, res)=>{
   // console.log(rea.params)
   User.findByIdAndDelete(req.params.id).then((result)=>{
     console.log(result)
-    res.send({message: "User Deleted Successfully"})
+    res.status(200).json({message: "User Deleted Successfully"})
     
   }).catch((err)=>{
     console.log(err)
-    res.send({"an error occured"})
+    res.status(400).json({"an error occured"})
   })
 }
 
