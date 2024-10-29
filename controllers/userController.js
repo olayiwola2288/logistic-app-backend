@@ -94,6 +94,8 @@ const getUserById = (req, res) => {
 const updateUser = (req, res) => {
   console.log(req.user);
   // Check if the person editing has the right (logged in user or admin)
+  if(req.params.id == req.user._id)return res.status(400).json({message:"this action is incorrect you cant edit this person"});
+
   User.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((user) => {
       if (!user) {
@@ -121,9 +123,10 @@ const deleteUser = (req, res)=>{
     
   }).catch((err)=>{
     console.log(err)
-    res.status(400).json({maessage: "an error occured"})
+    res.status(400).json({massage: "an error occurred"})
   })
 }
+
 
 // Get my details
 module.exports = { signInUser, signUpUser, getUsers, getUserById, updateUser, getMe, deleteUser };
